@@ -10,14 +10,17 @@
  */
 public class InsertionSort {
 
-    void sort(double[] array, int n) {
-        int k;
-        for (int i = 1; i < n; i++) {
+    void sort(double[] array) {
+        System.out.println("Inside insertion");
+        int n = array.length;
+        System.out.println("Array length:"+n);
+        for (int i = 1; i < n; ++i) {
             double temp = array[i];
             int j = i - 1;
-            while (j >= 0 && temp < array[j]) {
+
+            while (j >= 0 && array[j] > temp) {
                 array[j + 1] = array[j];
-                j--;
+                j = j - 1;
             }
             array[j + 1] = temp;
         }

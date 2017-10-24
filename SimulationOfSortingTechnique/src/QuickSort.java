@@ -18,26 +18,26 @@ class QuickSort {
         sort(array, pivot+1, high);
     }
     
-    int partition(double[] array, int low, int high) {
-        int i = low;
-        int j = high;
-        int pivotIndex = (high - low)/2;
-        double pivot = array[pivotIndex];
-        while(i<j) {
-            while(array[i] < pivot) {
+    int partition(double arr[], int low, int high)
+    {
+        double pivot = arr[high]; 
+        int i = (low-1); 
+        for (int j=low; j<high; j++)
+        {
+            if (arr[j] <= pivot)
+            {
                 i++;
-            }
-            
-            while(array[j] > pivot) {
-                j--;
-            }
-            
-            if(i<j) {
-                double temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
+                double temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
             }
         }
-        return i;
+ 
+        double temp = arr[i+1];
+        arr[i+1] = arr[high];
+        arr[high] = temp;
+ 
+        return i+1;
     }
+ 
 }
