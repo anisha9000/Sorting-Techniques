@@ -11,18 +11,15 @@
 public class InsertionSort {
 
     void sort(double[] array, int n) {
-        int i, j, k;
-        double temp;
-        for (i = 1; i < n; i++) {
-            temp = array[i];
-            j = i - 1;
-            while (temp < array[j] && j >= 0) {
+        int k;
+        for (int i = 1; i < n; i++) {
+            double temp = array[i];
+            int j = i - 1;
+            while (j >= 0 && temp < array[j]) {
                 array[j + 1] = array[j];
                 j--;
             }
-            if (temp > array[j]) {
-                array[j + 1] = temp;
-            }
+            array[j + 1] = temp;
         }
     }
 }

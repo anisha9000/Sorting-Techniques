@@ -10,24 +10,25 @@
  */
 class QuickSort {
     void sort(double[] array, int low, int high) {
-        if(low == high) {
+        if(low >= high) {
             return;
         }
-        int pivot = (high-low)/2;
-        partition(array, low, high, pivot);
+        int pivot = partition(array, low, high);
         sort(array, low, pivot-1);
         sort(array, pivot+1, high);
     }
     
-    void partition(double[] array, int low, int high, int pivot) {
+    int partition(double[] array, int low, int high) {
         int i = low;
         int j = high;
+        int pivotIndex = (high - low)/2;
+        double pivot = array[pivotIndex];
         while(i<j) {
-            while(array[i] < array[pivot]) {
+            while(array[i] < pivot) {
                 i++;
             }
             
-            while(array[j] > array[pivot]) {
+            while(array[j] > pivot) {
                 j--;
             }
             
@@ -37,5 +38,6 @@ class QuickSort {
                 array[j] = temp;
             }
         }
+        return i;
     }
 }

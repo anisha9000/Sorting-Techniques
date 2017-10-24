@@ -15,6 +15,19 @@ public class simulationofsortingtechnique {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        double array[] = {5,3,7,1,8,2};
+        /*InsertionSort insertionSort = new InsertionSort();
+        insertionSort.sort(array, 6);
+        
+        /*BubbleSort bubbleSort = new BubbleSort();
+        bubbleSort.sort(array, 6);
+        */
+        QuickSort quickkSort = new QuickSort();
+        quickkSort.sort(array, 0, 5);
+        
+        for(int i=0;i<6;i++) {
+            System.out.print(array[i]+" ");
+        }
     }
     
 }
