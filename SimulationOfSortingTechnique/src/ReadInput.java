@@ -30,7 +30,7 @@ public class ReadInput {
         FileReader fileReader = null;
         CSVParser csvFileParser = null;
 
-        String[] FILE_HEADER_MAPPING = {"NSN", "rep_office", "common_name", "Description", "Price", "UI", "AAC"};
+        String[] FILE_HEADER_MAPPING = {"Price"};
 
         //Create the CSVFormat object with the header mapping
         CSVFormat csvFileFormat = CSVFormat.DEFAULT.withHeader(FILE_HEADER_MAPPING);
