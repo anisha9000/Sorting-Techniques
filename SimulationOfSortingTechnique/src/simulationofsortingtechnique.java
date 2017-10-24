@@ -27,12 +27,24 @@ public class simulationofsortingtechnique {
         
         SelectionSort selectSort = new SelectionSort();
         selectSort.sort(array,array.length);
-       */
+        */
+        
+        /* Generating data set containing uniformly distributed random Double values using ThreadLocalRandom*/
+        /*usage: genRandom(no. of datapoints, min value, max value)*/
+        GenSynDataSet data = new GenSynDataSet();   
+        //double[] arr = data.genRandom(600,1,1000);
+        
+        /*usage: genGaussian(no. of datapoints, mean value, variance value)*/
+        double[] arr2 = data.genGaussian(7, 100.0, 5.0);
+        
+       
         MergeSort mergeSort = new MergeSort();
-        mergeSort.sort(array,0,array.length-1);
+        mergeSort.sort(arr2,0,arr2.length-1);
+        
+        
                 
-        for(int i=0;i<6;i++) {
-            System.out.print(array[i]+" ");
+        for(int i=0;i<arr2.length;i++) {
+            System.out.print(arr2[i]+"\n");
         }
     }
     
