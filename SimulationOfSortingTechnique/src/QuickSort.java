@@ -9,17 +9,17 @@
  * @author anisha
  */
 class QuickSort {
-    void QuickSort(T[] array, int low, int high) {
+    void sort(double[] array, int low, int high) {
         if(low == high) {
             return;
         }
         int pivot = (high-low)/2;
-        sortBasedOnPivot(array, low, high, pivot);
-        QuickSort(array, low, pivot-1);
-        QuickSort(array, pivot+1, high);
+        partition(array, low, high, pivot);
+        sort(array, low, pivot-1);
+        sort(array, pivot+1, high);
     }
     
-    void sortBasedOnPivot(T[] array, int low, int high, int pivot) {
+    void partition(double[] array, int low, int high, int pivot) {
         int i = low;
         int j = high;
         while(i<j) {
@@ -32,7 +32,7 @@ class QuickSort {
             }
             
             if(i<j) {
-                T temp = array[i];
+                double temp = array[i];
                 array[i] = array[j];
                 array[j] = temp;
             }
