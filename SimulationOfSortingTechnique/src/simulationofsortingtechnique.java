@@ -19,12 +19,18 @@ public class simulationofsortingtechnique {
         /*InsertionSort insertionSort = new InsertionSort();
         insertionSort.sort(array, 6);
         
-        /*BubbleSort bubbleSort = new BubbleSort();
+        BubbleSort bubbleSort = new BubbleSort();
         bubbleSort.sort(array, 6);
-        */
+        
         QuickSort quickkSort = new QuickSort();
         quickkSort.sort(array, 0, 5);
         
+        SelectionSort selectSort = new SelectionSort();
+        selectSort.sort(array,array.length);
+       */
+        MergeSort mergeSort = new MergeSort();
+        mergeSort.sort(array,0,array.length-1);
+                
         for(int i=0;i<6;i++) {
             System.out.print(array[i]+" ");
         }
