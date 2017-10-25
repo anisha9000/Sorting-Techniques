@@ -9,6 +9,7 @@
  * @author bhagatsanchya
  */
 public class MergeSort {
+     
     
     void merge(double arr[], int l, int mid, int r)
     {
@@ -64,8 +65,9 @@ public class MergeSort {
             k++;
         }
     }
+    
     void sort(double[] a, int l, int r){
-  
+    //      startTime  = startTime + System.currentTimeMillis();
           if (l < r)
         {
             // Find the middle 
@@ -76,7 +78,11 @@ public class MergeSort {
  
             // Merge the sorted halves
             merge(a, l, mid, r);
+      //     long stopTime = System.currentTimeMillis();
+        //   System.out.println("Time elapsed = "+ (stopTime - startTime));
+           
         }
+          
     
     }
 }
