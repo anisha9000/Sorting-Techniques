@@ -30,6 +30,7 @@ public class simulationofsortingtechnique {
     public static void main(String[] args) throws IOException {
 
         for (int iteration = 0; iteration < 5; iteration++) {
+            System.out.println("Iteration:"+iteration);
             double array[] = generateData(0);
             for (int sortType = 1; sortType <= 5; sortType++) {
                 computeSorting(array, sortType);
@@ -48,7 +49,7 @@ public class simulationofsortingtechnique {
         switch (i) {
             case 0:
                 /*usage: genRandom(no. of datapoints, min value, max value)*/
-                arr2 = data.genRandom(50000, 1, 1000);
+                arr2 = data.genRandom(1000, 1, 1000);
                 return arr2;
             case 1:
                 /*usage: genGaussian(no. of datapoints, mean value, variance value)*/
@@ -105,6 +106,7 @@ public class simulationofsortingtechnique {
                 break;
         }
 
+        System.out.println("SortType computed:"+ sortTypeStr);
         long endMeomry = getMemory(runtime);
         long endTime = System.currentTimeMillis();
         SaveOutput.writeToCSV(sortTypeStr, startTime, endTime, startMemory, endMeomry);
