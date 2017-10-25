@@ -85,7 +85,7 @@ public class simulationofsortingtechnique {
                 arr2 = data.genGaussian(dataSize, 100.0, 5.0);
                 return arr2;
             case 2:
-                List<Double> prices = realInput.readListingFile(dataSize);
+                List<Double> prices = realInput.readHealthFile(dataSize);
                 Collections.shuffle(prices);
                 arr2 = prices.stream().mapToDouble(Double::doubleValue).toArray();
                 return arr2;

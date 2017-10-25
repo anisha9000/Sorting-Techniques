@@ -18,19 +18,16 @@ import org.apache.commons.csv.CSVRecord;
  */
 public class ReadInput {
 
-    public static ArrayList<Double> readListingFile(int dataSize) {
+    public static ArrayList<Double> readCSV(String fileName, 
+            String[] FileHeaderMapping, String colName, int dataSize) {
         
-        String fileName = new File("").getAbsolutePath()+"/src/Better_Health.csv";
-
         FileReader fileReader = null;
         CSVParser csvFileParser = null;
 
-        String[] FILE_HEADER_MAPPING = {"Data_Value"};
-
         //Create the CSVFormat object with the header mapping
-        CSVFormat csvFileFormat = CSVFormat.DEFAULT.withHeader(FILE_HEADER_MAPPING);
+        CSVFormat csvFileFormat = CSVFormat.DEFAULT.withHeader(FileHeaderMapping);
 
-        ArrayList<Double> prices = new ArrayList();
+        ArrayList<Double> records = new ArrayList();
         try {
             
             fileReader = new FileReader(fileName);
@@ -41,11 +38,11 @@ public class ReadInput {
             
             for (int i = 1; i < dataSize; i++) {
                 CSVRecord record = (CSVRecord) csvRecords.get(i);
-                prices.add(Double.parseDouble(record.get("Data_Value")));
+                records.add(Double.parseDouble(record.get(colName)));
             }
 
             
-            System.out.println(prices.size());
+            System.out.println(records.size());
         } catch (Exception e) {
             System.out.println("Error in CsvFileReader !!!");
             e.printStackTrace();
@@ -60,7 +57,14 @@ public class ReadInput {
         }
         
         
-        return prices;
+        return records;
+    }
+    
+    public static ArrayList<Double> readHealthFile(int dataSize) {
+        
+        String fileName = new File("").getAbsolutePath()+"/src/Better_Health.csv";
+        String[] fileHeaderMapping = {"Data_Value"};
+        return readCSV(fileName, fileHeaderMapping, "Data_Value", dataSize);
     }
 
 }
