@@ -20,23 +20,24 @@ public class ReadInput {
 
     public static void main(String[] args) {
         System.out.println("\nRead CSV file:");
-        readListingFile();
+        
     }
 
-    public static void readListingFile() {
+    public static double[] readListingFile() {
         
-        String fileName = new File("").getAbsolutePath()+"/src/nsn.csv";
+        String fileName = new File("").getAbsolutePath()+"/src/listings.csv";
 
         FileReader fileReader = null;
         CSVParser csvFileParser = null;
 
-        String[] FILE_HEADER_MAPPING = {"Price"};
+        String[] FILE_HEADER_MAPPING = {"price"};
 
         //Create the CSVFormat object with the header mapping
         CSVFormat csvFileFormat = CSVFormat.DEFAULT.withHeader(FILE_HEADER_MAPPING);
 
+        ArrayList<Double> prices = new ArrayList();
         try {
-            ArrayList<Double> prices = new ArrayList();
+            
             fileReader = new FileReader(fileName);
             csvFileParser = new CSVParser(fileReader, csvFileFormat);
             List csvRecords = csvFileParser.getRecords();
@@ -45,13 +46,9 @@ public class ReadInput {
             
             for (int i = 1; i < csvRecords.size(); i++) {
                 CSVRecord record = (CSVRecord) csvRecords.get(i);
-                prices.add(Double.parseDouble(record.get("Price")));
+                prices.add(Double.parseDouble(record.get("price")));
             }
 
-            //Print the new student list
-            /*for (Double price : prices) {
-                System.out.println(price);
-            }*/
             
             System.out.println(prices.size());
         } catch (Exception e) {
@@ -66,7 +63,8 @@ public class ReadInput {
                 e.printStackTrace();
             }
         }
-
+        double[] arr = prices.stream().mapToDouble(Double::doubleValue).toArray();
+        return arr;
     }
 
 }
