@@ -1,3 +1,8 @@
+
+import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -22,12 +27,10 @@ public class simulationofsortingtechnique {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         for (int iteration = 0; iteration < 5; iteration++) {
             double array[] = generateData(0);
-            long time1 = java.lang.System.currentTimeMillis();
-
             for (int sortType = 1; sortType <= 5; sortType++) {
                 computeSorting(array, sortType);
             }
@@ -52,7 +55,9 @@ public class simulationofsortingtechnique {
                 arr2 = data.genGaussian(50000, 100.0, 5.0);
                 return arr2;
             case 2:
-                arr2 = realInput.readListingFile();
+                List<Double> prices = realInput.readListingFile();
+                Collections.shuffle(prices);
+                double[] arr = prices.stream().mapToDouble(Double::doubleValue).toArray();
                 return arr2;
             //TODO
             //case 3:
@@ -64,7 +69,7 @@ public class simulationofsortingtechnique {
         return runtime.totalMemory() - runtime.freeMemory();
     }
 
-    private static void computeSorting(double[] array, int sortType) {
+    private static void computeSorting(double[] array, int sortType) throws IOException {
         long startTime = System.currentTimeMillis();
         Runtime runtime = Runtime.getRuntime();
         runtime.gc();
@@ -102,5 +107,7 @@ public class simulationofsortingtechnique {
 
         long endMeomry = getMemory(runtime);
         long endTime = System.currentTimeMillis();
+        SaveOutput.writeToCSV(sortTypeStr, startTime, endTime, startMemory, endMeomry);
+        
     }
 }

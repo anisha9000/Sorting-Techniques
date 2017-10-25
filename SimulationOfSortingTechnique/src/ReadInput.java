@@ -18,12 +18,7 @@ import org.apache.commons.csv.CSVRecord;
  */
 public class ReadInput {
 
-    public static void main(String[] args) {
-        System.out.println("\nRead CSV file:");
-        
-    }
-
-    public static double[] readListingFile() {
+    public static ArrayList<Double> readListingFile() {
         
         String fileName = new File("").getAbsolutePath()+"/src/listings.csv";
 
@@ -63,8 +58,9 @@ public class ReadInput {
                 e.printStackTrace();
             }
         }
-        double[] arr = prices.stream().mapToDouble(Double::doubleValue).toArray();
-        return arr;
+        
+        
+        return prices;
     }
 
 }
