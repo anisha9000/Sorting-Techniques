@@ -19,13 +19,13 @@ import org.apache.commons.csv.CSVRecord;
 public class ReadInput {
 
     public static void main(String[] args) {
-        String fileName =  new File("").getAbsolutePath()+"/src/nsn.csv";
-
         System.out.println("\nRead CSV file:");
-        readCsvFile(fileName);
+        readListingFile();
     }
 
-    public static void readCsvFile(String fileName) {
+    public static void readListingFile() {
+        
+        String fileName = new File("").getAbsolutePath()+"/src/nsn.csv";
 
         FileReader fileReader = null;
         CSVParser csvFileParser = null;

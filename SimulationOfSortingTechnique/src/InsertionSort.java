@@ -11,9 +11,7 @@
 public class InsertionSort {
 
     void sort(double[] array) {
-        System.out.println("Inside insertion");
         int n = array.length;
-        System.out.println("Array length:"+n);
         for (int i = 1; i < n; ++i) {
             double temp = array[i];
             int j = i - 1;

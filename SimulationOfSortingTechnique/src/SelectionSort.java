@@ -10,15 +10,15 @@
  */
 public class SelectionSort {
     
-    void sort(double[] a,int n ){
-        
+    void sort(double[] array){
+        int n = array.length;
         for(int i = 0; i < n; i++){
             for(int j = i+1; j < n; j++){
                 
-                if (a[i] > a[j]){
-                    double temp = a[i];
-                    a[i] = a[j];
-                    a[j] = temp;
+                if (array[i] > array[j]){
+                    double temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
                 }
             }
         }
