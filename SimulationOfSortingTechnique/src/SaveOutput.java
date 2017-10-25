@@ -23,11 +23,10 @@ public class SaveOutput {
 
     ;
     
-    public static void writeToCSV(String sortType, long startTime, long endTime, long startMemory, long endMemory) throws IOException {
+    public static void writeToCSV(String sortType, int dataSize, long startTime, long endTime, long startMemory, long endMemory) throws IOException {
         FileWriter fileWriter = new FileWriter(OUTPUT_CSV_FILE, true);
         
-        
-        String row = sortType + "," + String.valueOf(startTime) + "," + String.valueOf(endTime) + ","
+        String row = sortType + "," + dataSize +","+ startTime + "," + endTime + ","
                 + (endTime - startTime) + "," + startMemory + "," + endMemory + "," + (endMemory - startMemory);
         System.out.println(row);
         fileWriter.append(row);

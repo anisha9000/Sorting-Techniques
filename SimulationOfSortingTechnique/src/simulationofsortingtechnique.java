@@ -8,7 +8,6 @@ import java.util.List;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author anisha
@@ -29,18 +28,22 @@ public class simulationofsortingtechnique {
      */
     public static void main(String[] args) throws IOException {
 
-        for (int iteration = 0; iteration < 5; iteration++) {
-            System.out.println("Iteration:"+iteration);
-            double array[] = generateData(0);
-            for (int sortType = 1; sortType <= 5; sortType++) {
-                computeSorting(array, sortType);
-            }
+        int dataSize = 10000;
+        for (int dataCounter = 1; dataCounter <= 5; dataCounter++) {
+            for (int iteration = 0; iteration < 5; iteration++) {
+                System.out.println("Iteration:" + iteration);
+                double array[] = generateData(0, dataSize);
+                for (int sortType = 1; sortType <= 5; sortType++) {
+                    computeSorting(array, sortType);
+                }
 
+            }
+            dataSize+=10000;
         }
 
     }
 
-    private static double[] generateData(int i) {
+    private static double[] generateData(int i, int dataSize) {
         /* Generating data set containing uniformly distributed random Double values using ThreadLocalRandom*/
 
         GenSynDataSet data = new GenSynDataSet();
@@ -49,14 +52,14 @@ public class simulationofsortingtechnique {
         switch (i) {
             case 0:
                 /*usage: genRandom(no. of datapoints, min value, max value)*/
-                arr2 = data.genRandom(1000, 1, 1000);
+                arr2 = data.genRandom(dataSize, 1, 1000);
                 return arr2;
             case 1:
                 /*usage: genGaussian(no. of datapoints, mean value, variance value)*/
-                arr2 = data.genGaussian(50000, 100.0, 5.0);
+                arr2 = data.genGaussian(dataSize, 100.0, 5.0);
                 return arr2;
             case 2:
-                List<Double> prices = realInput.readListingFile();
+                List<Double> prices = realInput.readListingFile(dataSize);
                 Collections.shuffle(prices);
                 double[] arr = prices.stream().mapToDouble(Double::doubleValue).toArray();
                 return arr2;
@@ -106,10 +109,10 @@ public class simulationofsortingtechnique {
                 break;
         }
 
-        System.out.println("SortType computed:"+ sortTypeStr);
+        System.out.println("SortType computed:" + sortTypeStr);
         long endMeomry = getMemory(runtime);
         long endTime = System.currentTimeMillis();
-        SaveOutput.writeToCSV(sortTypeStr, startTime, endTime, startMemory, endMeomry);
-        
+        SaveOutput.writeToCSV(sortTypeStr, array.length, startTime, endTime, startMemory, endMeomry);
+
     }
 }

@@ -18,7 +18,7 @@ import org.apache.commons.csv.CSVRecord;
  */
 public class ReadInput {
 
-    public static ArrayList<Double> readListingFile() {
+    public static ArrayList<Double> readListingFile(int dataSize) {
         
         String fileName = new File("").getAbsolutePath()+"/src/listings.csv";
 
@@ -39,7 +39,7 @@ public class ReadInput {
 
             System.out.println(csvRecords.size());
             
-            for (int i = 1; i < csvRecords.size(); i++) {
+            for (int i = 1; i < dataSize; i++) {
                 CSVRecord record = (CSVRecord) csvRecords.get(i);
                 prices.add(Double.parseDouble(record.get("price")));
             }
