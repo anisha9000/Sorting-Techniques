@@ -20,12 +20,12 @@ public class ReadInput {
 
     public static ArrayList<Double> readListingFile(int dataSize) {
         
-        String fileName = new File("").getAbsolutePath()+"/src/listings.csv";
+        String fileName = new File("").getAbsolutePath()+"/src/Better_Health.csv";
 
         FileReader fileReader = null;
         CSVParser csvFileParser = null;
 
-        String[] FILE_HEADER_MAPPING = {"price"};
+        String[] FILE_HEADER_MAPPING = {"Data_Value"};
 
         //Create the CSVFormat object with the header mapping
         CSVFormat csvFileFormat = CSVFormat.DEFAULT.withHeader(FILE_HEADER_MAPPING);
@@ -41,7 +41,7 @@ public class ReadInput {
             
             for (int i = 1; i < dataSize; i++) {
                 CSVRecord record = (CSVRecord) csvRecords.get(i);
-                prices.add(Double.parseDouble(record.get("price")));
+                prices.add(Double.parseDouble(record.get("Data_Value")));
             }
 
             

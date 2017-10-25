@@ -13,8 +13,7 @@ import java.util.List;
  * @author anisha
  */
 public class simulationofsortingtechnique {
-    
-    
+
     static final long MEGABYTE = 1024L * 1024L;
 
     //Object creation
@@ -29,30 +28,45 @@ public class simulationofsortingtechnique {
      */
     public static void main(String[] args) throws IOException {
 
-        int dataSize = 10000;
+        DegSorted degSorted = new DegSorted();
+        /*int dataSize = 10000;
         for (int dataCounter = 1; dataCounter <= 5; dataCounter++) {
+            for (int iteration = 0; iteration < 5; iteration++) {
+                System.out.println("Iteration:" + iteration);
+                double array[] = generateData(0, dataSize);
+                degSorted.partialSort(array, 25);
+                for (int sortType = 1; sortType <= 5; sortType++) {
+                    computeSorting(array, sortType);
+                }
+
+            }
+            dataSize += 10000;
+        }*/
+
+        int dataSize = 15000;
+        double degreeSortedness = 0.25;
+        for (int degreeCounter = 1; degreeCounter <= 2; degreeCounter++) {
+            for (int iteration = 0; iteration < 5; iteration++) {
+                System.out.println("Iteration:" + iteration);
+                double array[] = generateData(2, dataSize);
+                array = degSorted.partialSort(array, degreeSortedness);
+                for (int sortType = 1; sortType <= 5; sortType++) {
+                    computeSorting(array, sortType, degreeSortedness);
+                }
+            }
+            degreeSortedness *= 2;
+        }
+
+        degreeSortedness = 0;
         for (int iteration = 0; iteration < 5; iteration++) {
-        System.out.println("Iteration:" + iteration);
-        double array[] = generateData(0, dataSize);
-        for (int sortType = 1; sortType <= 5; sortType++) {
-        computeSorting(array, sortType);
+            System.out.println("Iteration:" + iteration);
+            double array[] = generateData(0, dataSize);
+            array = degSorted.reverseSort(array);
+            for (int sortType = 1; sortType <= 5; sortType++) {
+                computeSorting(array, sortType, degreeSortedness);
+            }
         }
-        
-        }
-        dataSize+=10000;
-        }
-        /*
-       double[] d = {1,2,3,4,5,6,7,8,9,10,11};
-       DegSorted deg = new DegSorted();
-       double[] d1 = deg.partialSort(d,0.25);
-       double[] d2 = deg.partialSort(d,0.5);
-       double[] d3 = deg.reverseSort(d,0.25);
-        
-       
-       for(int i=0;i<d1.length;i++){
-           System.out.print(d1[i]+" ");
-       }
-        */
+
     }
 
     private static double[] generateData(int i, int dataSize) {
@@ -73,7 +87,7 @@ public class simulationofsortingtechnique {
             case 2:
                 List<Double> prices = realInput.readListingFile(dataSize);
                 Collections.shuffle(prices);
-                double[] arr = prices.stream().mapToDouble(Double::doubleValue).toArray();
+                arr2 = prices.stream().mapToDouble(Double::doubleValue).toArray();
                 return arr2;
             //TODO
             //case 3:
@@ -85,7 +99,8 @@ public class simulationofsortingtechnique {
         return runtime.totalMemory() - runtime.freeMemory();
     }
 
-    private static void computeSorting(double[] array, int sortType) throws IOException {
+    private static void computeSorting(double[] array, int sortType, 
+            double degreeSortedness) throws IOException {
         long startTime = System.currentTimeMillis();
         Runtime runtime = Runtime.getRuntime();
         runtime.gc();
@@ -124,7 +139,15 @@ public class simulationofsortingtechnique {
         System.out.println("SortType computed:" + sortTypeStr);
         long endMeomry = getMemory(runtime);
         long endTime = System.currentTimeMillis();
-        SaveOutput.writeToCSV(sortTypeStr, array.length, startTime, endTime, startMemory, endMeomry);
-
+        if(degreeSortedness == -1) {
+            SaveOutput.writeToCSV(sortTypeStr, String.valueOf(array.length), startTime, endTime, startMemory, endMeomry);
+        } else if(degreeSortedness == 0.25) {
+            SaveOutput.writeToCSV(sortTypeStr, "25%", startTime, endTime, startMemory, endMeomry);
+        } else if(degreeSortedness == 0.50) {
+            SaveOutput.writeToCSV(sortTypeStr, "50%", startTime, endTime, startMemory, endMeomry);
+        } else {
+            SaveOutput.writeToCSV(sortTypeStr, "Reversed", startTime, endTime, startMemory, endMeomry);
+        }
+        
     }
 }
