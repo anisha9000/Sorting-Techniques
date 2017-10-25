@@ -29,26 +29,25 @@ public class simulationofsortingtechnique {
     public static void main(String[] args) throws IOException {
 
         DegSorted degSorted = new DegSorted();
-        /*int dataSize = 10000;
-        for (int dataCounter = 1; dataCounter <= 5; dataCounter++) {
-            for (int iteration = 0; iteration < 5; iteration++) {
-                System.out.println("Iteration:" + iteration);
-                double array[] = generateData(0, dataSize);
-                degSorted.partialSort(array, 25);
-                for (int sortType = 1; sortType <= 5; sortType++) {
-                    computeSorting(array, sortType);
-                }
-
-            }
-            dataSize += 10000;
-        }*/
+//        int dataSize = 10000;
+//        for (int dataCounter = 1; dataCounter <= 5; dataCounter++) {
+//            for (int iteration = 0; iteration < 5; iteration++) {
+//                System.out.println("Iteration:" + iteration);
+//                double array[] = generateData(3, dataSize);
+//                for (int sortType = 1; sortType <= 5; sortType++) {
+//                    computeSorting(array, sortType, -1);
+//                }
+//
+//            }
+//            dataSize += 10000;
+//        }
 
         int dataSize = 15000;
         double degreeSortedness = 0.25;
         for (int degreeCounter = 1; degreeCounter <= 2; degreeCounter++) {
             for (int iteration = 0; iteration < 5; iteration++) {
                 System.out.println("Iteration:" + iteration);
-                double array[] = generateData(2, dataSize);
+                double array[] = generateData(3, dataSize);
                 array = degSorted.partialSort(array, degreeSortedness);
                 for (int sortType = 1; sortType <= 5; sortType++) {
                     computeSorting(array, sortType, degreeSortedness);
@@ -60,7 +59,7 @@ public class simulationofsortingtechnique {
         degreeSortedness = 0;
         for (int iteration = 0; iteration < 5; iteration++) {
             System.out.println("Iteration:" + iteration);
-            double array[] = generateData(0, dataSize);
+            double array[] = generateData(3, dataSize);
             array = degSorted.reverseSort(array);
             for (int sortType = 1; sortType <= 5; sortType++) {
                 computeSorting(array, sortType, degreeSortedness);
@@ -85,12 +84,15 @@ public class simulationofsortingtechnique {
                 arr2 = data.genGaussian(dataSize, 100.0, 5.0);
                 return arr2;
             case 2:
-                List<Double> prices = realInput.readHealthFile(dataSize);
-                Collections.shuffle(prices);
-                arr2 = prices.stream().mapToDouble(Double::doubleValue).toArray();
+                List<Double> records = realInput.readHealthFile(dataSize);
+                Collections.shuffle(records);
+                arr2 = records.stream().mapToDouble(Double::doubleValue).toArray();
                 return arr2;
-            //TODO
-            //case 3:
+            case 3:
+                records = realInput.readComplaintFile(dataSize);
+                Collections.shuffle(records);
+                arr2 = records.stream().mapToDouble(Double::doubleValue).toArray();
+                return arr2;
         }
         return arr2;
     }

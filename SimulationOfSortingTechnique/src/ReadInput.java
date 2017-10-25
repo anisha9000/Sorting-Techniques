@@ -36,7 +36,7 @@ public class ReadInput {
 
             System.out.println(csvRecords.size());
             
-            for (int i = 1; i < dataSize; i++) {
+            for (int i = 1; i <= dataSize; i++) {
                 CSVRecord record = (CSVRecord) csvRecords.get(i);
                 records.add(Double.parseDouble(record.get(colName)));
             }
@@ -66,5 +66,13 @@ public class ReadInput {
         String[] fileHeaderMapping = {"Data_Value"};
         return readCSV(fileName, fileHeaderMapping, "Data_Value", dataSize);
     }
+    
+    public static ArrayList<Double> readComplaintFile(int dataSize) {
+        
+        String fileName = new File("").getAbsolutePath()+"/src/Consumer_Complaints.csv";
+        String[] fileHeaderMapping = {"Data_Value"};
+        return readCSV(fileName, fileHeaderMapping, "Data_Value", dataSize);
+    }
 
+    
 }
