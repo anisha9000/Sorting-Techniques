@@ -1,4 +1,9 @@
 
+import SortingAlgorithms.SelectionSort;
+import SortingAlgorithms.QuickSort;
+import SortingAlgorithms.InsertionSort;
+import SortingAlgorithms.BubbleSort;
+import SortingAlgorithms.MergeSort;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;

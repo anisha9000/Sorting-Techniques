@@ -1,3 +1,5 @@
+package SortingAlgorithms;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,8 +10,8 @@
  *
  * @author anisha
  */
-class QuickSort {
-    void sort(double[] array, int low, int high) {
+public class QuickSort {
+    public void sort(double[] array, int low, int high) {
         if(low >= high) {
             return;
         }
