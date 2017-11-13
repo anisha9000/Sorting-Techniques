@@ -1,5 +1,8 @@
 package SortingAlgorithms;
 
+import Vizualization.SortAlgorithm;
+import Vizualization.SortArray;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,7 +13,7 @@ package SortingAlgorithms;
  *
  * @author anisha
  */
-public class BubbleSort {
+public class BubbleSort implements SortAlgorithm{
 
     public void sort(double[] array) {
         int n = array.length;
@@ -23,5 +26,15 @@ public class BubbleSort {
                 }
             }
         }
+    }
+
+    @Override
+    public void sort(SortArray array) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
