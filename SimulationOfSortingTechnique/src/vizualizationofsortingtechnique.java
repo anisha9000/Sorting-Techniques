@@ -36,7 +36,7 @@ public class vizualizationofsortingtechnique {
     public static void main(String[] args) throws IOException {
 
         DegSorted degSorted = new DegSorted();
-        LaunchFrame sortFrame = new LaunchFrame(null, 30);
+        LaunchFrame sortFrame = new LaunchFrame();
         sortFrame.launchSortFrame(30);
         
 //        int dataSize = 10000;

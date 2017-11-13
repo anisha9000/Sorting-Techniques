@@ -50,36 +50,14 @@ import java.util.Objects;
 @SuppressWarnings("serial")
 public final class LaunchFrame extends Frame {
 	
-	/*---- Fields ----*/
-	
-	private final List<String> algorithms;
-        int arraySize;
-	
-	
-	/*---- Constructor ----*/
-	
-	public LaunchFrame(List<SortAlgorithm> algos, int arraySize) {
-		// Set window title and closing action
-		super("Sort Demo");
-		// Drop-down selector for sort algorithm
-                String[] algoChoices = {"Merge Sort", "Bubble sort"};
-		algorithms = new ArrayList<>(Arrays.asList(algoChoices));
-                this.arraySize = arraySize;
-                
-		
-	}
-	
-	
 	public void launchSortFrame(int size) {
 		// Parse and check input numbers from text fields
 		int scale = 30;
 		double speed = 30;
 		
-		if (size <= 0 || scale <= 0 || speed <= 0 || Double.isInfinite(speed) || Double.isNaN(speed))
-			return;
-		
 		// Initialize objects and worker thread
 		final VisualSortArray array = new VisualSortArray(size, scale, speed);
+                
 		final SortAlgorithm algorithm = new BubbleSort();
 		final int startDelay = 1000;  // In milliseconds
 		new Thread() {
@@ -92,7 +70,7 @@ public final class LaunchFrame extends Frame {
 			
 			private void initFrame() {
 				// Do component layout
-				final Frame sortFrame = new Frame("Bubble");
+				final Frame sortFrame = new Frame("Algorithm name goes here");
 				sortFrame.add(array.canvas);
 				sortFrame.setResizable(false);
 				sortFrame.pack();

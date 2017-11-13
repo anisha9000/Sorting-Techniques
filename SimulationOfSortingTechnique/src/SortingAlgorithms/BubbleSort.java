@@ -30,7 +30,8 @@ public class BubbleSort implements SortAlgorithm{
 
     @Override
     public void sort(SortArray array) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Sorting TODO");
+        
     }
 
     @Override
